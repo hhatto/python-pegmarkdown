@@ -21,6 +21,7 @@ $(SO): $(OBJS)
 
 clean:
 	rm -rf *.o *.so build temp *.egg-info
+	rm -rf src/peg-markdown
 
 cleanall: clean
 	rm -rf src/peg-markdown
@@ -29,12 +30,13 @@ test:
 	python test.py
 
 PEGS_DIR = src/peg-markdown
-build:
-	cd src && git clone https://github.com/jgm/peg-markdown.git && cd -
+build: libdownload
+	python check64bit_and_fPICpatch.py
 	cd src/peg-markdown && make && cd -
 	python setup.py build
-	#gcc $(FLAGS) $(INCS) $(LIBS) -fPIC -shared -o $(SO) \
-	#	src/pegmarkdown.c $(PEGS_DIR)/markdown_lib.o \
+
+libdownload:
+	cd src && git clone https://github.com/jgm/peg-markdown.git && cd -
 
 install:
 	python setup.py install
