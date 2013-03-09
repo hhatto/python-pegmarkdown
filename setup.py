@@ -47,6 +47,9 @@ setup(
                   libraries=get_libraries(),
                   extra_objects=['src/peg-markdown/markdown_lib.o',
                                  'src/peg-markdown/markdown_parser.o',
-                                 'src/peg-markdown/markdown_output.o'],
+                                 'src/peg-markdown/markdown_output.o',
+                                 'src/peg-markdown/odf.o',
+                                 'src/peg-markdown/parsing_functions.o',
+                                 'src/peg-markdown/utility_functions.o'],
                  )]
 )
